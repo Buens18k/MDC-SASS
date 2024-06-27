@@ -1,3 +1,4 @@
+import SessionWrapper from "@/lib/SessionWrapper";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "./components/Nav";
@@ -18,15 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <Nav />
-        {children}
-      </ThemeProvider>
+        <SessionWrapper>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Nav />
+            {children}
+          </ThemeProvider>
+        </SessionWrapper>
       </body>
     </html>
   );
